@@ -1,0 +1,18 @@
+// ==UserScript==
+// @name         Allegro Homepage Redirect
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @description  Redirect from Allegro homepage to purchase history
+// @author       Your Name
+// @match        https://allegro.pl/
+// @match        https://allegro.pl
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=allegro.pl
+// @grant        none
+// ==/UserScript==
+
+(function() {
+'use strict';
+
+// Redirect to the purchase history page
+window.location.href = "https://allegro.pl/moje-allegro/zakupy/kupione";
+})();
