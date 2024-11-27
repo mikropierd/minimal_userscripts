@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Allegro Homepage Redirect
+// @name         Allegro Homepage Redirect and Specific Link Change
 // @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  Redirect from Allegro homepage to purchase history
+// @version      1.3
+// @description  Redirect from Allegro homepage to purchase history and change specific links
 // @author       Your Name
 // @match        https://allegro.pl/
 // @match        https://allegro.pl
@@ -13,6 +13,19 @@
 (function() {
 'use strict';
 
-// Redirect to the purchase history page
-window.location.href = "https://allegro.pl/moje-allegro/zakupy/kupione";
+// URL of the purchase history page
+const purchaseHistoryUrl = "https://allegro.pl/moje-allegro/zakupy/kupione";
+
+// Redirect to the purchase history page if on the homepage
+if (window.location.pathname === '/' || window.location.pathname === '') {
+window.location.href = purchaseHistoryUrl;
+}
+
+// Change specific links on the page to point to the purchase history page
+window.addEventListener('load', function() {
+const links = document.querySelectorAll('a[href="https://allegro.pl/"], a[href="https://allegro.pl"]');
+links.forEach(link => {
+link.href = purchaseHistoryUrl;
+});
+});
 })();
